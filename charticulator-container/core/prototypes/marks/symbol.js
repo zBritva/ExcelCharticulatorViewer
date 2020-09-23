@@ -1,0 +1,356 @@
+"use strict";
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+Object.defineProperty(exports, "__esModule", { value: true });
+const common_1 = require("../../common");
+const Graphics = require("../../graphics");
+const Specification = require("../../specification");
+const emphasis_1 = require("./emphasis");
+const symbol_attrs_1 = require("./symbol.attrs");
+exports.symbolTypesList = symbol_attrs_1.symbolTypes;
+class SymbolElementClass extends emphasis_1.EmphasizableMarkClass {
+    constructor() {
+        super(...arguments);
+        this.attributes = symbol_attrs_1.symbolAttributes;
+        this.attributeNames = Object.keys(symbol_attrs_1.symbolAttributes);
+    }
+    initializeState() {
+        super.initializeState();
+        const attrs = this.state.attributes;
+        attrs.x = 0;
+        attrs.y = 0;
+        attrs.size = 60;
+        attrs.fill = { r: 128, g: 128, b: 128 };
+        attrs.strokeWidth = 1;
+        attrs.opacity = 1;
+        attrs.visible = true;
+        attrs.symbol = "circle";
+    }
+    /** Get link anchors for this mark */
+    getLinkAnchors(mode) {
+        const attrs = this.state.attributes;
+        return [
+            {
+                element: this.object._id,
+                points: [
+                    {
+                        x: attrs.x,
+                        y: attrs.y,
+                        xAttribute: "x",
+                        yAttribute: "y",
+                        direction: { x: mode == "begin" ? 1 : -1, y: 0 }
+                    }
+                ]
+            }
+        ];
+    }
+    // Get the graphical element from the element
+    getGraphics(cs, offset, glyphIndex = 0, manager, emphasize) {
+        const attrs = this.state.attributes;
+        if (!attrs.visible || !this.object.properties.visible) {
+            return null;
+        }
+        if (attrs.size <= 0) {
+            return null;
+        }
+        const pc = cs.transformPoint(attrs.x + offset.x, attrs.y + offset.y);
+        const style = Object.assign({ strokeColor: attrs.stroke, strokeWidth: attrs.strokeWidth, fillColor: attrs.fill, opacity: attrs.opacity }, this.generateEmphasisStyle(emphasize));
+        switch (attrs.symbol) {
+            case "square": {
+                const w = Math.sqrt(attrs.size);
+                return {
+                    type: "rect",
+                    style,
+                    x1: pc.x - w / 2,
+                    y1: pc.y - w / 2,
+                    x2: pc.x + w / 2,
+                    y2: pc.y + w / 2
+                };
+            }
+            case "cross": {
+                const r = Math.sqrt(attrs.size / 5) / 2;
+                const path = Graphics.makePath(style);
+                path.moveTo(pc.x - 3 * r, pc.y - r);
+                path.lineTo(pc.x - r, pc.y - r);
+                path.lineTo(pc.x - r, pc.y - 3 * r);
+                path.lineTo(pc.x + r, pc.y - 3 * r);
+                path.lineTo(pc.x + r, pc.y - r);
+                path.lineTo(pc.x + 3 * r, pc.y - r);
+                path.lineTo(pc.x + 3 * r, pc.y + r);
+                path.lineTo(pc.x + r, pc.y + r);
+                path.lineTo(pc.x + r, pc.y + 3 * r);
+                path.lineTo(pc.x - r, pc.y + 3 * r);
+                path.lineTo(pc.x - r, pc.y + r);
+                path.lineTo(pc.x - 3 * r, pc.y + r);
+                path.closePath();
+                return path.path;
+            }
+            case "diamond": {
+                const tan30 = 0.5773502691896257; // Math.sqrt(1 / 3);
+                const tan30_2 = 1.1547005383792515; // tan30 * 2;
+                const y = Math.sqrt(attrs.size / tan30_2), x = y * tan30;
+                const path = Graphics.makePath(style);
+                path.moveTo(pc.x, pc.y - y);
+                path.lineTo(pc.x + x, pc.y);
+                path.lineTo(pc.x, pc.y + y);
+                path.lineTo(pc.x - x, pc.y);
+                path.closePath();
+                return path.path;
+            }
+            case "star": {
+                const ka = 0.8908130915292852281;
+                const kr = 0.3819660112501051; // Math.sin(Math.PI / 10) / Math.sin(7 * Math.PI / 10),
+                const kx = 0.22451398828979266; // Math.sin(2 * Math.PI / 10) * kr;
+                const ky = -0.3090169943749474; // -Math.cos(2 * Math.PI / 10) * kr;
+                const r = Math.sqrt(attrs.size * ka), x = kx * r, y = ky * r;
+                const path = Graphics.makePath(style);
+                path.moveTo(pc.x, pc.y - r);
+                path.lineTo(pc.x + x, pc.y + y);
+                for (let i = 1; i < 5; ++i) {
+                    const a = (Math.PI * 2 * i) / 5, c = Math.cos(a), s = Math.sin(a);
+                    path.lineTo(pc.x + s * r, pc.y - c * r);
+                    path.lineTo(pc.x + c * x - s * y, pc.y + s * x + c * y);
+                }
+                path.closePath();
+                return path.path;
+            }
+            case "triangle": {
+                const sqrt3 = Math.sqrt(3);
+                const y = -Math.sqrt(attrs.size / (sqrt3 * 3));
+                const path = Graphics.makePath(style);
+                path.moveTo(pc.x, pc.y + y * 2);
+                path.lineTo(pc.x - sqrt3 * y, pc.y - y);
+                path.lineTo(pc.x + sqrt3 * y, pc.y - y);
+                path.closePath();
+                return path.path;
+            }
+            case "wye": {
+                const c = -0.5, s = Math.sqrt(3) / 2, k = 1 / Math.sqrt(12), a = (k / 2 + 1) * 3;
+                const r = Math.sqrt(attrs.size / a), x0 = r / 2, y0 = r * k, x1 = x0, y1 = r * k + r, x2 = -x1, y2 = y1;
+                const path = Graphics.makePath(style);
+                path.moveTo(pc.x + x0, pc.y + y0);
+                path.lineTo(pc.x + x1, pc.y + y1);
+                path.lineTo(pc.x + x2, pc.y + y2);
+                path.lineTo(pc.x + c * x0 - s * y0, pc.y + s * x0 + c * y0);
+                path.lineTo(pc.x + c * x1 - s * y1, pc.y + s * x1 + c * y1);
+                path.lineTo(pc.x + c * x2 - s * y2, pc.y + s * x2 + c * y2);
+                path.lineTo(pc.x + c * x0 + s * y0, pc.y + c * y0 - s * x0);
+                path.lineTo(pc.x + c * x1 + s * y1, pc.y + c * y1 - s * x1);
+                path.lineTo(pc.x + c * x2 + s * y2, pc.y + c * y2 - s * x2);
+                path.closePath();
+                return path.path;
+            }
+            default: {
+                return {
+                    type: "circle",
+                    style,
+                    cx: pc.x,
+                    cy: pc.y,
+                    r: Math.sqrt(attrs.size / Math.PI)
+                };
+            }
+        }
+    }
+    // Get DropZones given current state
+    getDropZones() {
+        const attrs = this.state.attributes;
+        const { x, y, size } = attrs;
+        const r = Math.sqrt(size);
+        return [
+            {
+                type: "line",
+                p1: { x: x + r, y },
+                p2: { x: x - r, y },
+                title: "size",
+                dropAction: {
+                    scaleInference: {
+                        attribute: "size",
+                        attributeType: Specification.AttributeType.Number,
+                        hints: { rangeNumber: [0, 200 * Math.PI] }
+                    }
+                }
+            }
+        ];
+    }
+    // Get bounding rectangle given current state
+    getHandles() {
+        const attrs = this.state.attributes;
+        const { x, y } = attrs;
+        return [
+            {
+                type: "point",
+                x,
+                y,
+                actions: [
+                    { type: "attribute", source: "x", attribute: "x" },
+                    { type: "attribute", source: "y", attribute: "y" }
+                ]
+            }
+        ];
+    }
+    getBoundingBox() {
+        const attrs = this.state.attributes;
+        const { x, y, size } = attrs;
+        return {
+            type: "circle",
+            cx: x,
+            cy: y,
+            radius: Math.sqrt(size / Math.PI)
+        };
+    }
+    getSnappingGuides() {
+        const attrs = this.state.attributes;
+        const { x, y } = attrs;
+        return [
+            { type: "x", value: x, attribute: "x" },
+            { type: "y", value: y, attribute: "y" }
+        ];
+    }
+    getAttributePanelWidgets(manager) {
+        let widgets = [
+            manager.sectionHeader("Symbol"),
+            manager.mappingEditor("Shape", "symbol", {
+                acceptKinds: [Specification.DataKind.Categorical],
+                hints: { rangeEnum: symbol_attrs_1.symbolTypes },
+                defaultValue: "circle"
+            }),
+            manager.mappingEditor("Size", "size", {
+                acceptKinds: [Specification.DataKind.Numerical],
+                hints: { rangeNumber: [0, 200 * Math.PI] },
+                defaultValue: 60,
+                numberOptions: {
+                    showSlider: true,
+                    minimum: 0,
+                    sliderRange: [0, 3600],
+                    sliderFunction: "sqrt"
+                }
+            }),
+            manager.sectionHeader("Style"),
+            manager.mappingEditor("Fill", "fill", {}),
+            manager.mappingEditor("Stroke", "stroke", {})
+        ];
+        if (this.object.mappings.stroke != null) {
+            widgets.push(manager.mappingEditor("Line Width", "strokeWidth", {
+                hints: { rangeNumber: [0, 5] },
+                defaultValue: 1,
+                numberOptions: { showSlider: true, sliderRange: [0, 5], minimum: 0 }
+            }));
+        }
+        widgets = widgets.concat([
+            manager.mappingEditor("Opacity", "opacity", {
+                hints: { rangeNumber: [0, 1] },
+                defaultValue: 1,
+                numberOptions: { showSlider: true, minimum: 0, maximum: 1 }
+            }),
+            manager.mappingEditor("Visibility", "visible", {
+                defaultValue: true
+            })
+        ]);
+        return widgets;
+    }
+    getTemplateParameters() {
+        const properties = [];
+        if (this.object.mappings.visible &&
+            this.object.mappings.visible.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "visible"
+                },
+                type: Specification.AttributeType.Boolean,
+                default: this.state.attributes.visible
+            });
+        }
+        if (this.object.mappings.fill &&
+            this.object.mappings.fill.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "fill"
+                },
+                type: Specification.AttributeType.Color,
+                default: common_1.rgbToHex(this.state.attributes.fill)
+            });
+        }
+        if (this.object.mappings.strokeWidth &&
+            this.object.mappings.strokeWidth.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "strokeWidth"
+                },
+                type: Specification.AttributeType.Number,
+                default: this.state.attributes.strokeWidth
+            });
+        }
+        if (this.object.mappings.stroke &&
+            this.object.mappings.stroke.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "stroke"
+                },
+                type: Specification.AttributeType.Color,
+                default: common_1.rgbToHex(this.state.attributes.stroke)
+            });
+        }
+        if (this.object.mappings.size &&
+            this.object.mappings.size.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "size"
+                },
+                type: Specification.AttributeType.Number,
+                default: this.state.attributes.size
+            });
+        }
+        if (this.object.mappings.opacity &&
+            this.object.mappings.opacity.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "opacity"
+                },
+                type: Specification.AttributeType.Number,
+                default: this.state.attributes.opacity
+            });
+        }
+        if (this.object.mappings.symbol &&
+            this.object.mappings.symbol.type === "value") {
+            properties.push({
+                objectID: this.object._id,
+                target: {
+                    attribute: "symbol"
+                },
+                type: Specification.AttributeType.Enum,
+                default: this.state.attributes.symbol
+            });
+        }
+        return {
+            properties
+        };
+    }
+}
+SymbolElementClass.classID = "mark.symbol";
+SymbolElementClass.type = "mark";
+SymbolElementClass.metadata = {
+    displayName: "Symbol",
+    iconPath: "mark/symbol",
+    creatingInteraction: {
+        type: "point",
+        mapping: { x: "x", y: "y" }
+    }
+};
+SymbolElementClass.defaultProperties = {
+    visible: true
+};
+SymbolElementClass.defaultMappingValues = {
+    fill: { r: 217, g: 217, b: 217 },
+    strokeWidth: 1,
+    opacity: 1,
+    size: 60,
+    visible: true
+};
+exports.SymbolElementClass = SymbolElementClass;
+//# sourceMappingURL=symbol.js.map

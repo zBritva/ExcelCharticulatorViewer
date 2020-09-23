@@ -1,0 +1,817 @@
+{
+  "state": {
+    "version": "1.6.0",
+    "dataset": {
+      "name": "Cities",
+      "tables": [
+        {
+          "name": "Cities",
+          "displayName": "Cities",
+          "columns": [
+            {
+              "name": "ID",
+              "displayName": "ID",
+              "type": "string",
+              "metadata": {
+                "kind": "categorical",
+                "orderMode": "alphabetically"
+              }
+            },
+            {
+              "name": "Cities",
+              "displayName": "Cities",
+              "type": "string",
+              "metadata": {
+                "kind": "categorical",
+                "orderMode": "alphabetically"
+              }
+            },
+            {
+              "name": "Country",
+              "displayName": "Country",
+              "type": "string",
+              "metadata": {
+                "kind": "categorical",
+                "orderMode": "alphabetically"
+              }
+            },
+            {
+              "name": "Value",
+              "displayName": "Value",
+              "type": "number",
+              "metadata": {
+                "kind": "numerical"
+              }
+            }
+          ],
+          "rows": [
+            {
+              "_id": "0",
+              "ID": "RU",
+              "Cities": "Moscow",
+              "Country": "Russia",
+              "Value": 23
+            },
+            {
+              "_id": "1",
+              "ID": "RU",
+              "Cities": "Kazan",
+              "Country": "Russia",
+              "Value": 43
+            },
+            {
+              "_id": "2",
+              "ID": "RU",
+              "Cities": "Sochi",
+              "Country": "Russia",
+              "Value": 22
+            },
+            {
+              "_id": "3",
+              "ID": "GE",
+              "Cities": "Berlin",
+              "Country": "Germany",
+              "Value": 34
+            },
+            {
+              "_id": "4",
+              "ID": "GE",
+              "Cities": "Frankfurt",
+              "Country": "Germany",
+              "Value": 30
+            },
+            {
+              "_id": "5",
+              "ID": "GE",
+              "Cities": "Cologne",
+              "Country": "Germany",
+              "Value": 18
+            },
+            {
+              "_id": "6",
+              "ID": "US",
+              "Cities": "Tacoma",
+              "Country": "USA",
+              "Value": 15
+            },
+            {
+              "_id": "7",
+              "ID": "US",
+              "Cities": "Seattle",
+              "Country": "USA",
+              "Value": 41
+            },
+            {
+              "_id": "8",
+              "ID": "US",
+              "Cities": "Bellevue",
+              "Country": "USA",
+              "Value": 33
+            }
+          ],
+          "type": "Main"
+        }
+      ]
+    },
+    "chart": {
+      "_id": "cpgw7ph2wz",
+      "classID": "chart.rectangle",
+      "properties": {
+        "name": "Chart",
+        "backgroundColor": null,
+        "backgroundOpacity": 1
+      },
+      "mappings": {
+        "marginTop": {
+          "type": "value",
+          "value": 80
+        }
+      },
+      "glyphs": [
+        {
+          "_id": "8sc9d8xpc9",
+          "classID": "glyph.rectangle",
+          "properties": {
+            "name": "Glyph"
+          },
+          "table": "Cities",
+          "marks": [
+            {
+              "_id": "y8jod7k61es",
+              "classID": "mark.anchor",
+              "properties": {
+                "name": "Anchor"
+              },
+              "mappings": {
+                "x": {
+                  "type": "parent",
+                  "parentAttribute": "icx"
+                },
+                "y": {
+                  "type": "parent",
+                  "parentAttribute": "icy"
+                }
+              }
+            },
+            {
+              "_id": "g2m3jbo936",
+              "classID": "mark.rect",
+              "properties": {
+                "visible": true,
+                "shape": "rectangle",
+                "name": "Shape1"
+              },
+              "mappings": {
+                "fill": {
+                  "type": "value",
+                  "value": {
+                    "r": 217,
+                    "g": 217,
+                    "b": 217
+                  }
+                },
+                "strokeWidth": {
+                  "type": "value",
+                  "value": 1
+                },
+                "opacity": {
+                  "type": "value",
+                  "value": 1
+                },
+                "visible": {
+                  "type": "value",
+                  "value": true
+                },
+                "x1": {
+                  "type": "parent",
+                  "parentAttribute": "ix1"
+                },
+                "y1": {
+                  "type": "parent",
+                  "parentAttribute": "iy1"
+                },
+                "x2": {
+                  "type": "parent",
+                  "parentAttribute": "ix2"
+                },
+                "y2": {
+                  "type": "parent",
+                  "parentAttribute": "iy2"
+                }
+              }
+            }
+          ],
+          "mappings": {},
+          "constraints": []
+        }
+      ],
+      "elements": [
+        {
+          "_id": "2fp14pl3wmm",
+          "classID": "plot-segment.cartesian",
+          "glyph": "8sc9d8xpc9",
+          "table": "Cities",
+          "filter": null,
+          "mappings": {
+            "x1": {
+              "type": "parent",
+              "parentAttribute": "x1"
+            },
+            "y1": {
+              "type": "parent",
+              "parentAttribute": "y1"
+            },
+            "x2": {
+              "type": "parent",
+              "parentAttribute": "x2"
+            },
+            "y2": {
+              "type": "parent",
+              "parentAttribute": "y2"
+            }
+          },
+          "properties": {
+            "name": "PlotSegment1",
+            "visible": true,
+            "marginX1": 0,
+            "marginY1": 0,
+            "marginX2": 0,
+            "marginY2": 0,
+            "sublayout": {
+              "type": "dodge-x",
+              "order": null,
+              "ratioX": 0.1,
+              "ratioY": 0.1,
+              "align": {
+                "x": "start",
+                "y": "start"
+              },
+              "grid": {
+                "direction": "x",
+                "xCount": null,
+                "yCount": null
+              },
+              "packing": {
+                "gravityX": 0.1,
+                "gravityY": 0.1
+              }
+            }
+          }
+        },
+        {
+          "_id": "gwz4730vm1e",
+          "classID": "mark.text",
+          "properties": {
+            "name": "Title",
+            "visible": true,
+            "alignment": {
+              "x": "middle",
+              "y": "top",
+              "xMargin": 0,
+              "yMargin": 30
+            },
+            "rotation": 0
+          },
+          "mappings": {
+            "x": {
+              "type": "parent",
+              "parentAttribute": "cx"
+            },
+            "y": {
+              "type": "parent",
+              "parentAttribute": "oy2"
+            },
+            "text": {
+              "type": "value",
+              "value": "Cities"
+            },
+            "fontSize": {
+              "type": "value",
+              "value": 24
+            },
+            "color": {
+              "type": "value",
+              "value": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+              }
+            }
+          }
+        }
+      ],
+      "scales": [],
+      "scaleMappings": [],
+      "constraints": [],
+      "resources": []
+    },
+    "chartState": {
+      "elements": [
+        {
+          "attributes": {
+            "x1": -400,
+            "x2": 400,
+            "y1": -250,
+            "y2": 220,
+            "gapX": 4,
+            "gapY": 4,
+            "x": -100,
+            "y": 100
+          },
+          "dataRowIndices": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ],
+            [
+              8
+            ]
+          ],
+          "glyphs": [
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": -360.00000000001523,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": -400,
+                "y1": -250,
+                "x2": -320.00000000003047,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": -270.0000000000457,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": -310.00000000003047,
+                "y1": -250,
+                "x2": -230.00000000006096,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": -180.0000000000762,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": -220.00000000006096,
+                "y1": -250,
+                "x2": -140.00000000009146,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": -90.0000000001067,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": -130.00000000009146,
+                "y1": -250,
+                "x2": -50.00000000012193,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": -1.3716316971112974e-10,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": -40.00000000012193,
+                "y1": -250,
+                "x2": 39.9999999998476,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": 89.99999999983237,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": 49.9999999998476,
+                "y1": -250,
+                "x2": 129.99999999981708,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": 179.99999999980184,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": 139.99999999981708,
+                "y1": -250,
+                "x2": 219.9999999997866,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": 269.9999999997714,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": 229.9999999997866,
+                "y1": -250,
+                "x2": 309.99999999975614,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            },
+            {
+              "marks": [
+                {
+                  "attributes": {
+                    "x": 0,
+                    "y": 0
+                  }
+                },
+                {
+                  "attributes": {
+                    "x1": -39.99999999998476,
+                    "y1": -234.999999977161,
+                    "x2": 39.99999999998476,
+                    "y2": 234.999999977161,
+                    "cx": 0,
+                    "cy": 0,
+                    "width": 79.99999999996952,
+                    "height": 469.999999954322,
+                    "stroke": null,
+                    "fill": {
+                      "r": 217,
+                      "g": 217,
+                      "b": 217
+                    },
+                    "strokeWidth": 1,
+                    "opacity": 1,
+                    "visible": true
+                  }
+                }
+              ],
+              "attributes": {
+                "x": 359.9999999997409,
+                "y": -15.000000022839004,
+                "width": 79.99999999996952,
+                "height": 469.999999954322,
+                "x1": 319.99999999975614,
+                "y1": -250,
+                "x2": 399.9999999997257,
+                "y2": 219.999999954322,
+                "ix1": -39.99999999998476,
+                "iy1": -234.999999977161,
+                "ix2": 39.99999999998476,
+                "iy2": 234.999999977161,
+                "icx": 0,
+                "icy": 0
+              }
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "x": 0,
+            "y": 300,
+            "text": "Cities",
+            "fontFamily": "Arial",
+            "fontSize": 24,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "visible": true,
+            "outline": null,
+            "opacity": 1
+          }
+        }
+      ],
+      "scales": [],
+      "scaleMappings": [],
+      "attributes": {
+        "width": 900,
+        "height": 600,
+        "marginLeft": 50,
+        "marginRight": 50,
+        "marginTop": 80,
+        "marginBottom": 50,
+        "cx": 0,
+        "cy": -15,
+        "x1": -400,
+        "y1": -250,
+        "x2": 400,
+        "y2": 220,
+        "ox1": -450,
+        "oy1": -300,
+        "ox2": 450,
+        "oy2": 300
+      }
+    }
+  },
+  "name": "Cities"
+}

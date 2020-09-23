@@ -1,0 +1,329 @@
+{
+  "specification": {
+    "_id": "cpgw7ph2wz",
+    "classID": "chart.rectangle",
+    "properties": {
+      "name": "Chart",
+      "backgroundColor": null,
+      "backgroundOpacity": 1
+    },
+    "mappings": {
+      "marginTop": {
+        "type": "value",
+        "value": 80
+      }
+    },
+    "glyphs": [
+      {
+        "_id": "8sc9d8xpc9",
+        "classID": "glyph.rectangle",
+        "properties": {
+          "name": "Glyph"
+        },
+        "table": "Cities",
+        "marks": [
+          {
+            "_id": "y8jod7k61es",
+            "classID": "mark.anchor",
+            "properties": {
+              "name": "Anchor"
+            },
+            "mappings": {
+              "x": {
+                "type": "parent",
+                "parentAttribute": "icx"
+              },
+              "y": {
+                "type": "parent",
+                "parentAttribute": "icy"
+              }
+            }
+          },
+          {
+            "_id": "g2m3jbo936",
+            "classID": "mark.rect",
+            "properties": {
+              "visible": true,
+              "shape": "rectangle",
+              "name": "Shape1"
+            },
+            "mappings": {
+              "fill": {
+                "type": "value",
+                "value": {
+                  "r": 217,
+                  "g": 217,
+                  "b": 217
+                }
+              },
+              "strokeWidth": {
+                "type": "value",
+                "value": 1
+              },
+              "opacity": {
+                "type": "value",
+                "value": 1
+              },
+              "visible": {
+                "type": "value",
+                "value": true
+              },
+              "x1": {
+                "type": "parent",
+                "parentAttribute": "ix1"
+              },
+              "y1": {
+                "type": "parent",
+                "parentAttribute": "iy1"
+              },
+              "x2": {
+                "type": "parent",
+                "parentAttribute": "ix2"
+              },
+              "y2": {
+                "type": "parent",
+                "parentAttribute": "iy2"
+              }
+            },
+            "exposed": true
+          }
+        ],
+        "mappings": {},
+        "constraints": []
+      }
+    ],
+    "elements": [
+      {
+        "_id": "2fp14pl3wmm",
+        "classID": "plot-segment.cartesian",
+        "glyph": "8sc9d8xpc9",
+        "table": "Cities",
+        "filter": null,
+        "mappings": {
+          "x1": {
+            "type": "parent",
+            "parentAttribute": "x1"
+          },
+          "y1": {
+            "type": "parent",
+            "parentAttribute": "y1"
+          },
+          "x2": {
+            "type": "parent",
+            "parentAttribute": "x2"
+          },
+          "y2": {
+            "type": "parent",
+            "parentAttribute": "y2"
+          }
+        },
+        "properties": {
+          "name": "PlotSegment1",
+          "visible": true,
+          "marginX1": 0,
+          "marginY1": 0,
+          "marginX2": 0,
+          "marginY2": 0,
+          "sublayout": {
+            "type": "dodge-x",
+            "order": null,
+            "ratioX": 0.1,
+            "ratioY": 0.1,
+            "align": {
+              "x": "start",
+              "y": "start"
+            },
+            "grid": {
+              "direction": "x",
+              "xCount": null,
+              "yCount": null
+            },
+            "packing": {
+              "gravityX": 0.1,
+              "gravityY": 0.1
+            }
+          }
+        }
+      },
+      {
+        "_id": "gwz4730vm1e",
+        "classID": "mark.text",
+        "properties": {
+          "name": "Title",
+          "visible": true,
+          "alignment": {
+            "x": "middle",
+            "y": "top",
+            "xMargin": 0,
+            "yMargin": 30
+          },
+          "rotation": 0
+        },
+        "mappings": {
+          "x": {
+            "type": "parent",
+            "parentAttribute": "cx"
+          },
+          "y": {
+            "type": "parent",
+            "parentAttribute": "oy2"
+          },
+          "text": {
+            "type": "value",
+            "value": "Cities"
+          },
+          "fontSize": {
+            "type": "value",
+            "value": 24
+          },
+          "color": {
+            "type": "value",
+            "value": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          }
+        },
+        "exposed": true
+      }
+    ],
+    "scales": [],
+    "scaleMappings": [],
+    "constraints": [],
+    "resources": [],
+    "exposed": true
+  },
+  "defaultAttributes": {
+    "y8jod7k61es": {
+      "x": 0,
+      "y": 0
+    },
+    "g2m3jbo936": {
+      "x1": -3.999999999998476,
+      "y1": -23.499999997716095,
+      "x2": 3.999999999998476,
+      "y2": 23.499999997716095,
+      "cx": 0,
+      "cy": 0,
+      "width": 7.999999999996952,
+      "height": 46.99999999543219,
+      "strokeWidth": 0.1,
+      "opacity": 0.1
+    },
+    "gwz4730vm1e": {
+      "x": 0,
+      "y": 75,
+      "fontSize": 6,
+      "opacity": 0.25
+    }
+  },
+  "tables": [
+    {
+      "name": "Cities",
+      "columns": []
+    }
+  ],
+  "inference": [],
+  "properties": [
+    {
+      "objectID": "g2m3jbo936",
+      "target": {
+        "attribute": "fill"
+      },
+      "type": "color",
+      "default": "#d9d9d9",
+      "displayName": "Shape1/fill"
+    },
+    {
+      "objectID": "g2m3jbo936",
+      "target": {
+        "attribute": "visible"
+      },
+      "type": "boolean",
+      "default": true,
+      "displayName": "Shape1/visible"
+    },
+    {
+      "objectID": "g2m3jbo936",
+      "target": {
+        "attribute": "strokeWidth"
+      },
+      "type": "number",
+      "default": 1,
+      "displayName": "Shape1/strokeWidth"
+    },
+    {
+      "objectID": "g2m3jbo936",
+      "target": {
+        "attribute": "opacity"
+      },
+      "type": "number",
+      "default": 1,
+      "displayName": "Shape1/opacity"
+    },
+    {
+      "objectID": "gwz4730vm1e",
+      "target": {
+        "attribute": "fontSize"
+      },
+      "type": "number",
+      "default": 24,
+      "displayName": "Title/fontSize"
+    },
+    {
+      "objectID": "gwz4730vm1e",
+      "target": {
+        "attribute": "color"
+      },
+      "type": "color",
+      "default": "#000000",
+      "displayName": "Title/color"
+    },
+    {
+      "objectID": "gwz4730vm1e",
+      "target": {
+        "attribute": "text"
+      },
+      "type": "text",
+      "default": "Cities",
+      "displayName": "Title/text"
+    },
+    {
+      "objectID": "cpgw7ph2wz",
+      "target": {
+        "attribute": "marginLeft"
+      },
+      "type": "number",
+      "default": 50,
+      "displayName": "Chart/marginLeft"
+    },
+    {
+      "objectID": "cpgw7ph2wz",
+      "target": {
+        "attribute": "marginRight"
+      },
+      "type": "number",
+      "default": 50,
+      "displayName": "Chart/marginRight"
+    },
+    {
+      "objectID": "cpgw7ph2wz",
+      "target": {
+        "attribute": "marginTop"
+      },
+      "type": "number",
+      "default": 80,
+      "displayName": "Chart/marginTop"
+    },
+    {
+      "objectID": "cpgw7ph2wz",
+      "target": {
+        "attribute": "marginBottom"
+      },
+      "type": "number",
+      "default": 50,
+      "displayName": "Chart/marginBottom"
+    }
+  ]
+}
