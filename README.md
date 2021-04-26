@@ -30,3 +30,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## Copyright
 
 Copyright (c) 2019 Microsoft Corporation. All rights reserved.
+
+#Charticulator
+
+![image](https://user-images.githubusercontent.com/10897951/116041394-d6334200-a675-11eb-84b0-180de62e677a.png)
